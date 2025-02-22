@@ -27,21 +27,20 @@ import lombok.Setter;
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(length = 30)
     private String name;
 
-    @Column(unique = true, length = 30, nullable = false)
+    @Column(length = 30, unique = true, nullable = false)
     private String email;
 
     @CreationTimestamp
-    private Date createOn;
+    private Date createdOn;
 
     @UpdateTimestamp
-    private Date updateOn;
+    private Date updatedOn;
 
     @OneToMany(mappedBy = "author")
-    private List<Book> books;
-
+    private List<Book> booklist;
 }

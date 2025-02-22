@@ -29,31 +29,31 @@ import lombok.Setter;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
-    @Column(length = 30)
     private String name;
 
-    @Column(unique = true, length = 30, nullable = false)
+    @Column(length = 30, unique = true, nullable = false)
     private String email;
 
-    @Column(length = 15 , nullable = true)
-    private String phoneNumber;
+    @Column(length = 15, unique = true)
+    private String phoneNo;
 
     private String address;
 
     @CreationTimestamp
-    private Date createOn;
+    private Date createdOn;
 
     @UpdateTimestamp
-    private Date updateOn;
+    private Date updatedOn;
 
-    @Enumerated(EnumType.STRING)
-    private StudentType studentType;
-
-    @OneToMany(mappedBy = "student")
-    private List<Book> books;
+    @Enumerated(value = EnumType.STRING)
+    private StudentType status;
 
     @OneToMany(mappedBy = "student")
-    private List<Txn> txns;
+    private List<Book> list;
+
+    @OneToMany(mappedBy = "student")
+    private List<Txn> txnList;
+
 }

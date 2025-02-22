@@ -28,27 +28,26 @@ import lombok.Setter;
 public class Txn {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
-    private String txnId;
+    private String txnid;
 
     @ManyToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn
     private Book book;
 
     private int paidAmount;
 
     @CreationTimestamp
-    private Date createOn;
+    private Date createdOn;
 
     @UpdateTimestamp
-    private Date updateOn;
+    private Date updatedOn;
 
-    @Enumerated(EnumType.STRING)
-    private TxnStatus txnStatus;
-
+    @Enumerated(value = EnumType.STRING )
+    private TxnStatus status;
 }

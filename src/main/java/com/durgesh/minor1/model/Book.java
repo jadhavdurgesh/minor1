@@ -26,8 +26,8 @@ import lombok.Setter;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id; 
-    
+    private Integer id;
+
     @Column(length = 30)
     private String name;
 
@@ -36,16 +36,16 @@ public class Book {
     private int cost;
 
     @Enumerated
-    private BookType bookType;
+    private BookType type;
 
     @ManyToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "author_id")
+    @JoinColumn
     private Author author;
 
     @OneToMany(mappedBy = "book")
-    private List<Txn> txns;
+    private List<Txn> txnList;
 }

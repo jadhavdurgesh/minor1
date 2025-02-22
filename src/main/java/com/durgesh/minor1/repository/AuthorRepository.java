@@ -2,19 +2,18 @@ package com.durgesh.minor1.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.durgesh.minor1.model.Author;
-
-
+@Repository
 public interface AuthorRepository extends JpaRepository<Author, Integer> {
-    
-    // @Query(value = "select * from author where email =:email", nativeQuery = true)
-    // Author geAuthor(@Param("email") String email);  - > mysql will run this query in the database 
+    // 1st way of writing query Native Query (SQL)
+    // @Query(value = "select * from author where email = :email", nativeQuery = true) //mysql 
 
-    // @Query("SELECT a FROM Author a WHERE a.email = :email")
-    // Author getAuthor(@Param("email") String email); // -- > hibernate will run this query 
+    // 2nd way of writing query JPQL (Java Persistence Query Language)
+    // @Query("select a from Author a where a.email=:email") 
 
-
-    Author findByEmail(String email);  // --> hibernate will automatically create query
+    // 3rd way of writing query which is handled by hibernate itself || Derived Query
+    // (Method Query)
+    Author findByEmail(String email);
 }
