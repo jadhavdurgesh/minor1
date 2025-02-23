@@ -31,8 +31,7 @@ public class BookCreateRequest {
     }
 
     public Book toBook() {
-        return Book.builder().name(this.name).bookNo(this.bookNo).cost(this.cost).type(this.type)
-                .author(this.toAuthor()).build();
+        return Book.builder().name(this.name).bookNo(this.bookNo).cost(this.cost).type(this.type).build();
     }
 
 }

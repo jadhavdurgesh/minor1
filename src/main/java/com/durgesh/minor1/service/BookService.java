@@ -31,6 +31,7 @@ public class BookService {
 
         // create a row inside book table
         Book book = bookCreateRequest.toBook();
+        book.setAuthor(authorFromDb);
 
         return bookRepository.save(book);
 
