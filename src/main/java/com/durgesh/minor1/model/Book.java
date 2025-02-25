@@ -2,6 +2,8 @@ package com.durgesh.minor1.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -37,7 +39,7 @@ public class Book {
     private int cost;
 
     @Enumerated
-    private BookType type;
+    private BookType bookType;
 
     @ManyToOne
     @JoinColumn
@@ -45,6 +47,8 @@ public class Book {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnoreProperties("booklist") // ignore the booklist bcoz it will create a cyclic dependency and give stack
+                                      // over flow error
     private Author author;
 
     @OneToMany(mappedBy = "book")

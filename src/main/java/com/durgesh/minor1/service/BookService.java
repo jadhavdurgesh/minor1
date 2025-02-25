@@ -1,9 +1,15 @@
 package com.durgesh.minor1.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.durgesh.minor1.model.Author;
 import com.durgesh.minor1.model.Book;
+import com.durgesh.minor1.model.BookType;
+import com.durgesh.minor1.model.FilterType;
+import com.durgesh.minor1.model.Operator;
 import com.durgesh.minor1.repository.AuthorRepository;
 import com.durgesh.minor1.repository.BookRepository;
 import com.durgesh.minor1.request.BookCreateRequest;
@@ -35,6 +41,33 @@ public class BookService {
 
         return bookRepository.save(book);
 
+    }
+
+    public List<Book> filter(FilterType filterBy, Operator operator, String value) {
+        switch (operator) {
+            case EQUALS:
+                switch (filterBy) {
+                    case BOOK_NO:
+                        return bookRepository.findByBookNo(value);
+                    case AUTHOR_NAME:
+                        return bookRepository.findByAuthorName(value);
+                    case COST:
+                        return bookRepository.findByCost(Integer.parseInt(value));
+                    case BOOKTYPE:
+                        return bookRepository.findByBookType(BookType.valueOf(value));
+                }
+            case LESS_THAN:
+                switch (filterBy) {
+                    case COST:
+                        return bookRepository.findByCostLessThan(Integer.parseInt(value));
+                    default:
+                        break;
+
+                }
+            default:
+                return new ArrayList<>();
+
+        }
     }
 
 }

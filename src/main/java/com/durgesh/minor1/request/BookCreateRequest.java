@@ -20,7 +20,7 @@ public class BookCreateRequest {
 
     private int cost;
 
-    private BookType type;
+    private BookType bookType;
 
     private String authorName;
 
@@ -31,7 +31,7 @@ public class BookCreateRequest {
     }
 
     public Book toBook() {
-        return Book.builder().name(this.name).bookNo(this.bookNo).cost(this.cost).type(this.type).build();
+        return Book.builder().name(this.name).bookNo(this.bookNo).cost(this.cost).bookType(this.bookType).build();
     }
 
 }
